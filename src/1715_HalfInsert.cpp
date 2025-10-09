@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 int main(){
     int Num;
@@ -15,17 +14,22 @@ int main(){
     }
 
     //std::sort(vec.begin(), vec.end());
-    //直接插入排序
+    //折半插入排序
     for(int i = 1; i < Num; ++i){
         const int key = vec[i];
         int j = i - 1;
-
+        int low = 0, high = i - 1;
         //将vec[i]插到正确的地方
-        //将大于vec[i]的数往后挪 为vec[i]腾出位置
-        while(j >=0 && vec[j] > key){
-            vec[j + 1] = vec[j];
-            --j;
+        while (low <= high) {
+            int m = (low + high) / 2;
+            if (key < vec[m])
+                high = m - 1;
+            else low = m + 1;
         }
+        //将大于vec[i]的数往后挪 为vec[i]腾出位置
+        for (; j >= high + 1; --j)
+            vec[j + 1] = vec[j];
+
         //把key放到正确的位置
         vec[j + 1] = key;
     }
@@ -36,5 +40,5 @@ int main(){
     return 0;
 }
 //
-// Created by kyunana on 2025/10/8.
+// Created by 62705 on 2025/10/9.
 //
