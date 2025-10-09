@@ -30,7 +30,7 @@ void Quick_Sort(std::vector<int>& vec, int low, int high) {
 int main() {
     int x;
     std::vector<int> vec;
-    while (std::cin >> x && x != 0)
+    while (std::cin >> x )
         vec.push_back(x);
 
     Quick_Sort(vec, 0, vec.size() - 1);
