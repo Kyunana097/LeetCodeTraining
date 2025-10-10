@@ -4,12 +4,22 @@
 void HeapAdjust(std::vector<int>& vec, int low, int high) {
     int rc = vec[low];
     for (int j = 2 * low + 1; j <= high; j = j * 2 + 1) {
-
+        //当前选中左孩子 若左孩子小则要换成右孩子
+        if (j < high && vec[j] < vec[j + 1])
+            ++j;
+        //rc位置正确 则退出
+        if (vec[j] <= rc)
+            break;
+        vec[low] = vec[j];      //孩子上浮
+        low = j;        //继续筛选
     }
-
+    vec[low] = rc;
 }
 
-void Heap_Sort() {
+void Heap_Sort(std::vector<int>& vec) {
+    int n = vec.size();
+    if (n < 2)
+        return;
 
 }
 
@@ -25,7 +35,7 @@ int main() {
         vec.push_back(x);
     }
 
-    Heap_Sort();
+    Heap_Sort(vec);
 
     for(const int num : vec)
         std::cout << num << " ";
