@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 //被调用的逻辑函数
 int partition(std::vector<int>& vec, int low, int high) {
